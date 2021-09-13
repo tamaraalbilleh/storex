@@ -25,7 +25,7 @@ function Filter({ gender }) {
             selected={item.selected}
           />
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );

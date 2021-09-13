@@ -64,7 +64,7 @@ function Products(props) {
           scrollToOverflowEnabled={true}
           snapToStart={false}
           horizontal={false}
-          keyExtractor={({ item }) => item.id.toString()}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <ListComponent item={item} />}
         />
       </View>

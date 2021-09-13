@@ -22,7 +22,7 @@ function MyDrawer() {
         component={TabBottomNav}
       />
       <Drawer.Screen name="test" component={Test} />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Shop"
         options={{
 
@@ -30,7 +30,7 @@ function MyDrawer() {
         }}
         component={Products}
         initialParams={{ params: { gender: null } }}
-      />
+      /> */}
     </Drawer.Navigator>
   );
 }
