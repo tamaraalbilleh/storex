@@ -11,4 +11,6 @@ export default {
   background: "#F2F2F2",
   gray: "#999999",
   shadow: "rgba(0, 0, 0, 0.7)",
+  grayFont: "#888888",
+  border: "#BFBFBF",
 };

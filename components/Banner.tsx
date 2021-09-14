@@ -6,18 +6,16 @@ import colors from "../configs/colors";
 import AppText from "./AppText";
 
 function Banner({ gender }) {
-  
+  const genderStyle = () => {
+    if (gender === "female") {
+      return styles.container;
+    } else if (gender === "male") {
+      return styles.container2;
+    }
+    return styles.container3;
+  };
   return (
-    <View
-     
-      style={
-        gender === "female"
-          ? styles.container
-          : gender === "male"
-          ? styles.container2
-          : styles.container3
-      }
-    >
+    <View style={genderStyle}>
       {gender && (
         <AppText style={styles.text}>
           {gender === "female" ? "WOMEN" : "MEN"}

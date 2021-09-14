@@ -10,6 +10,7 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 import Products from "..//screens/Products";
 import NavButton from "../components/NavButton";
 import { Setting, Home } from "../screens/Test";
+import Bag from "../screens/Bag";
 const Tab = createBottomTabNavigator();
 
 export default function TabBottomNav() {
@@ -50,18 +51,19 @@ export default function TabBottomNav() {
 
         <Tab.Screen
           options={{
-            tabBarIcon: ({ color }) => <NavButton width={30} />,
+            tabBarIcon: ({ color }) => <NavButton />,
             tabBarLabel: "",
           }}
-          name="welcome"
-          component={WelcomeScreen}
+          name="Shops"
+          component={Bag}
         />
         <Tab.Screen
           options={{
             tabBarIcon: ({ color }) => <Locations width={30} />,
           }}
-          name="Shops"
-          component={Home}
+          name="welcome"
+          component={WelcomeScreen}
+          
         />
         <Tab.Screen
           options={{

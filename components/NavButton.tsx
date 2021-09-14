@@ -1,11 +1,22 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import Bag from "../assets/bag.svg";
+import BagSelected from '../assets/bagSelected.svg';
 import colors from "../configs/colors";
-function NavButton(props) {
+import AppText from "./AppText";
+import { useSelector } from "react-redux";
+import { getBag } from "../store/selector";
+import { useNavigation } from "@react-navigation/core";
+
+function NavButton() {
+  const navigation = useNavigation().isFocused()
+ 
+const number  = useSelector (getBag).length 
   return (
     <View style={styles.container}>
-      <Bag width={40} />
+      {!navigation && <Bag width={40} />}
+      {navigation && <BagSelected width={40} />}
+      {number > 0 && <View style={styles.badge} ><AppText style={styles.text }>{number}</AppText></View>}
     </View>
   );
 }
@@ -32,4 +43,25 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     shadowOpacity: 0.7
   },
+  badge : {
+    width : 20 , 
+    height : 20 , 
+    borderRadius  : 10,
+    backgroundColor : colors.dark ,
+    justifyContent : 'center' , 
+    alignItems  : 'center' , 
+    borderWidth : 2 , 
+    borderColor  : colors.white , 
+ position : 'absolute' , 
+ top : 29 ,
+ right : 26 
+
+  } , 
+  text  :{
+    color  : colors.white , 
+    alignSelf  : 'center' , 
+fontSize  : 14 , 
+marginTop : 1, 
+textAlign : 'center'
+  }
 });
