@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "storex",
+    "slug": "storex",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "storex"
+}
