@@ -25,9 +25,30 @@ export const filterAll = (payload) => {
   };
 };
 
-export const filterSpecial  = (payload) => {
+export const filterSpecial = (payload) => {
   return {
     type: actions.FILTER_S,
+    payload,
+  };
+};
+
+export const addToBag = (payload) => {
+  return {
+    type: actions.ADD,
+    payload,
+  };
+};
+
+export const removeFromBag = (payload) => {
+  return {
+    type: actions.REMOVE,
+    payload,
+  };
+};
+
+export const updateBagItem = (payload) => {
+  return {
+    type: actions.UPDATE,
     payload,
   };
 };

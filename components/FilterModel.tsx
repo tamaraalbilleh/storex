@@ -29,7 +29,6 @@ function FilterModel({ modalVisible, onPress }) {
     onPress();
   };
   const handleSubmit = (values) => {
-    console.log(values);
     dispatch(filterSpecial(values));
     close();
   };

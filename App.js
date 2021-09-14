@@ -8,6 +8,7 @@ import WelcomeScreen from "./screens/WelcomeScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabBottomNav from "./components/TabBottomNav";
 import MyDrawer from "./components/DrawerNav";
+import ItemEditScreen from "./screens/ItemEditScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
         {/* <Stack.Screen name="welcome" component={WelcomeScreen} /> */}
 
         <Stack.Screen name="Login" component={MyDrawer} />
+        <Stack.Screen name='edit' component={ItemEditScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     // <Products gender={null}/>

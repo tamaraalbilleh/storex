@@ -1,8 +1,21 @@
-import React from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import React, { useState } from "react";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import colors from "../configs/colors";
 import AppText from "./AppText";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useSelector, useDispatch } from "react-redux";
+import { addToBag } from "../store/actions";
+import { getBag } from "../store/selector";
 function ListComponent({ item }) {
+  const dispatch = useDispatch();
+  const bag = useSelector(getBag);
+  const [clicked, setClicked] = useState(false);
+  const handlePress = () => {
+    let newState = !clicked;
+    setClicked(newState);
+    dispatch(addToBag(item));
+  };
+  
   return (
     <View style={styles.container}>
       <Image
@@ -21,6 +34,13 @@ function ListComponent({ item }) {
           <AppText style={styles.oldPrice}>${item.originalPrice}</AppText>
 
           <AppText style={styles.newPrice}>${item.salePrice}</AppText>
+          <TouchableOpacity onPress={handlePress}>
+            <Icon
+              name="cart-plus"
+              color={bag.includes(item) ? colors.gold : colors.gray}
+              size={33}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -55,6 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 32.68,
     color: colors.dark,
+    marginRight: 8,
   },
   priceContainers: {
     flexDirection: "row",

@@ -7,30 +7,35 @@ import TabBottomNav from "./TabBottomNav";
 import colors from "../configs/";
 import TopNav from "./TopNav";
 import { Hidden } from "@material-ui/core";
+import Bag from "../screens/Bag";
 
 function MyDrawer() {
   const Drawer = createDrawerNavigator();
 
   return (
-    <Drawer.Navigator initialRouteName="welcome">
+    <Drawer.Navigator initialRouteName='_' >
+      
+      <Drawer.Screen
+        
+        name="test"
+        component={Test}
+      />
+      <Drawer.Screen
+        name="bag"
+        options={{
+          headerShown: false,
+        }}
+        component={Bag}
+      />
       <Drawer.Screen
         options={{
           headerShown: false,
-
+          drawerLabel: '',
         }}
-        name="welcome"
+        name="_"
         component={TabBottomNav}
       />
-      <Drawer.Screen name="test" component={Test} />
-      {/* <Drawer.Screen
-        name="Shop"
-        options={{
 
-          headerShown: false,
-        }}
-        component={Products}
-        initialParams={{ params: { gender: null } }}
-      /> */}
     </Drawer.Navigator>
   );
 }

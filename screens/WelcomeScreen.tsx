@@ -26,20 +26,21 @@ function WelcomeScreen({ navigation }) {
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Shop", { params: { gender: "female" } });
-          dispatch(getFemaleWare());
-        }}
-      >
-        <Banner gender="female" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
           navigation.navigate("Shop", { params: { gender: "male" } });
           dispatch(getMaleWare());
         }}
       >
         <Banner gender="male" />
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Shop", { params: { gender: "female" } });
+          dispatch(getFemaleWare());
+        }}
+      >
+        <Banner gender="female" />
+      </TouchableOpacity>
+      
       <View style={styles.hero}>
         <AppText style={styles.saleText}>WINTER SALES</AppText>
         <AppText style={styles.saleSupText}>UP TO 60% OFF</AppText>
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "90%",
-    height: 250,
+    height: 220,
   },
   saleText: {
     fontWeight: "600",
@@ -135,7 +136,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
 
     fontSize: 20,
-    // lineHeight: 30.17,
   },
   imageContainer: {
     width: "100%",
