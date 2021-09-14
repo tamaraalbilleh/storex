@@ -8,6 +8,8 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { updateBagItem } from "../store/actions";
 import EditFormSubmitButton from "./EditFormSubmitButton";
+
+
 const validationSchema = Yup.object().shape({
   size: Yup.string().required(),
   color: Yup.string().required(),
@@ -16,7 +18,6 @@ function EditForm({ item, navigation }) {
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
-      console.log ('this is the item' , values  )
     dispatch(updateBagItem(values));
     navigation.goBack("bag");
   };

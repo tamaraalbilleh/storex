@@ -5,13 +5,19 @@ import AppText from "./AppText";
 import Close from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromBag } from "../store/actions";
+import { getBag } from "../store/selector";
+import Minus from "react-native-vector-icons/Entypo";
 
-function EditItemComponent({ item  , navigation}) {
+function EditItemComponent({ item, navigation }) {
   const dispatch = useDispatch();
-
+  const bag = useSelector(getBag);
+  const count = bag.filter((product) => product.name === item.name);
+  let display = count.length > 0 ? true : false;
   const handleDelete = (item) => {
     dispatch(removeFromBag(item));
-    navigation.goBack('bag')
+    if (count[0].count === 1) {
+      navigation.goBack("bag");
+    }
   };
 
   return (
@@ -34,9 +40,17 @@ function EditItemComponent({ item  , navigation}) {
             style={styles.icon}
             onPress={() => handleDelete(item)}
           >
-            <Close name="close" size={33} color={colors.gray} />
+            {count[0].count === 1 && (
+              <Close name="close" size={33} color={colors.gray} />
+            )}
+            {count[0].count > 1 && (
+              <Minus name="minus" size={33} color={colors.gray} />
+            )}
           </TouchableOpacity>
         </View>
+        {display && (
+          <AppText style={styles.count}>Count : {count[0].count}</AppText>
+        )}
       </View>
     </View>
   );
@@ -107,5 +121,11 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     alignSelf: "center",
     marginBottom: 2,
+  },
+  count: {
+    marginHorizontal: 10,
+    marginTop: 4,
+    color: colors.dark,
+    fontSize: 15,
   },
 });

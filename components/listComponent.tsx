@@ -4,18 +4,21 @@ import colors from "../configs/colors";
 import AppText from "./AppText";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useSelector, useDispatch } from "react-redux";
-import { addToBag } from "../store/actions";
+import { addToBag, removeFromBag } from "../store/actions";
 import { getBag } from "../store/selector";
+
 function ListComponent({ item }) {
   const dispatch = useDispatch();
   const bag = useSelector(getBag);
-  const [clicked, setClicked] = useState(false);
   const handlePress = () => {
-    let newState = !clicked;
-    setClicked(newState);
     dispatch(addToBag(item));
   };
-  
+  const handleRemove =(item) => {
+    dispatch(removeFromBag(item));
+
+  }
+  const count = bag.filter((product) => product.name === item.name);
+  let display = count.length > 0 ? true : false;
   return (
     <View style={styles.container}>
       <Image
@@ -37,11 +40,20 @@ function ListComponent({ item }) {
           <TouchableOpacity onPress={handlePress}>
             <Icon
               name="cart-plus"
-              color={bag.includes(item) ? colors.gold : colors.gray}
-              size={33}
+              color={count.length > 0 ? colors.gold : colors.gray}
+              size={30}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>handleRemove (item)}>
+            <Icon
+              name="cart-minus"
+              color={count.length > 0 ? colors.gold : colors.gray}
+              size={30}
             />
           </TouchableOpacity>
         </View>
+        { display && <AppText style={styles.count}>Count : {count[0].count }</AppText>}
+        <View style={styles.pulsMinusContainer}></View>
       </View>
     </View>
   );
@@ -84,5 +96,23 @@ const styles = StyleSheet.create({
   headerContainer: {
     padding: 20,
     width: 250,
+  },
+  plus: {
+    width: 20,
+    height: 30,
+    position: "absolute",
+    top: 5,
+  },
+  count: {
+    marginHorizontal: 20,
+    marginTop: 10,
+    color: colors.dark,
+    fontSize: 20,
+  },
+  pulsMinusContainer: {
+    flexDirection: "row",
+    alignSelf: "flex-start",
+    marginRight: 40,
+    marginTop: 20,
   },
 });

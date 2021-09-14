@@ -15,7 +15,7 @@ function Banner({ gender }) {
     return styles.container3;
   };
   return (
-    <View style={genderStyle}>
+    <View style={genderStyle()}>
       {gender && (
         <AppText style={styles.text}>
           {gender === "female" ? "WOMEN" : "MEN"}

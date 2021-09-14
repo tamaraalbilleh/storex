@@ -3,7 +3,16 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import colors from "../configs/colors";
 import AppText from "./AppText";
 import Edit from "react-native-vector-icons/Feather";
+import Plus from "react-native-vector-icons/Entypo";
+import Minus from "react-native-vector-icons/Entypo";
+import { useSelector, useDispatch } from "react-redux";
+import { getBag } from "../store/selector";
+
 function BagListComponent({ item, handler }) {
+  const bag = useSelector(getBag);
+
+  const count = bag.filter((product) => product.name === item.name);
+  let display = count.length > 0 ? true : false;
   return (
     <View style={styles.container}>
       <Image
@@ -25,11 +34,12 @@ function BagListComponent({ item, handler }) {
           <AppText style={styles.size}>{item.size[0].toUpperCase()}</AppText>
           <TouchableOpacity
             style={styles.icon}
-            onPress={()=>handler.push("edit", { item: item })}
+            onPress={() => handler.push("edit", { item: item })}
           >
             <Edit name="edit" size={33} color={colors.gray} />
           </TouchableOpacity>
         </View>
+        <AppText style={styles.count}>Count : {count[0].count}</AppText>
       </View>
     </View>
   );
@@ -100,5 +110,11 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     alignSelf: "center",
     marginBottom: 2,
+  },
+  count: {
+    marginHorizontal: 10,
+    marginTop: 10,
+    color: colors.dark,
+    fontSize: 20,
   },
 });
